@@ -1,0 +1,269 @@
+body {
+    background-color: rgb(167, 195, 246);
+}
+
+.navigation {
+    list-style-type: none;
+    position: fixed;
+    width: 15%;
+    height: 100%;
+    background-color:aliceblue;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation a {
+    display: block;
+    color:rgb(0, 52, 97);
+    text-align: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navigation a.active {
+    background-color: white;
+}
+
+.navigation a:hover:not(.active) {
+    background-color: darkgrey;
+}
+
+
+.logo img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 100px;
+}
+
+.entrance a {
+    display: block;
+    color:cornflowerblue;
+    text-align: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: gainsboro;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.entrance a:hover {
+    background-color: rgba(136, 173, 241, 0.26);
+}
+
+.tasks {
+    margin-left: 15%;
+    padding: 2px 20px;
+}
+
+/* Include the padding and border in an element's total width and height */
+* {
+    box-sizing: border-box;
+  }
+  
+  /* Remove margins and padding from the list */
+  .tasklist ul {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Style the list items */
+  .tasklist ul li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background: #eee;
+    font-size: 18px;
+    transition: 0.2s;
+    color:rgb(0, 52, 97);
+  
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Set all odd list items to a different color (zebra-stripes) */
+  .tasklist ul li:nth-child(odd) {
+    background: #f9f9f9;
+  }
+  
+  /* Darker background-color on hover */
+  .tasklist ul li:hover {
+    background: #ddd;
+  }
+  
+  /* When clicked on, add a background color and strike out text */
+  .tasklist ul li.checked {
+    background: #888;
+    color: #fff;
+    text-decoration: line-through;
+  }
+  
+  /* Add a "checked" mark when clicked on */
+  .tasklist ul li.checked::before {
+    content: '';
+    position: absolute;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+  }
+  
+  /* Style the close button */
+  .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+  }
+  
+  .close:hover {
+    background-color: #000000;
+    color: white;
+  }
+  
+  /* Style the header */
+  .tasklist {
+    background-color:white;
+    padding: 30px 40px;
+    color: lightskyblue;
+    text-align: center;
+  }
+  
+  /* Clear floats after the header */
+  .tasklist:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Style the input */
+  input {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    width: 75%;
+    padding: 10px;
+    float: left;
+    font-size: 16px;
+  }
+  
+  /* Style the "Add" button */
+  .addBtn {
+    padding: 10px;
+    width: 25%;
+    background: #d9d9d9;
+    color: #555;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+  }
+  
+  .addBtn:hover {
+    background-color: #bbb;
+  }
+
+
+  .event-container{
+    font-family: "Roboto", sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .event-container h3.year{
+    font-size: 40px;
+    text-align: center;
+    border-bottom: ipx solid #b1b1b1;
+  }
+
+  .event-container .event{
+    box-shadow: 0 4px 16px -8px rgba(0, 0, 0, .4);
+    display: flex;
+    border-radius: 8px;
+    margin: 32px 0;
+  }
+
+  .event .event-left{
+    background: #222;
+    min-width: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #eee;
+    padding: 8px 48px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px 0 0 8px;
+  }
+
+  .event .event-left .date{
+    font-size: : 46px;;
+  }
+
+  .event .event-left .month{
+    font-size: 16px;
+    font-weight: normal;
+  }
+
+  .event .event-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 24px;
+  }
+
+  .event .event-right h3.event-title{
+    font-size: 24px;
+    margin: 24px 0 10px 0;
+    color: #218bbb;
+    text-transform: uppercase;
+  }
+
+  .event .event-right .event-timing{
+    background: #fff8ba;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    padding: 8px;
+    border-radius: 16px;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+
+  .event .event-right .event-timing img{
+    height: 20px;
+    padding-right: 8px;
+  }
+
+  @media (max-width: 550px){
+    .event{
+        flex-direction:column;
+    }
+
+    .event .event-left{
+        padding: 0;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .event .event-left .event-date .date,
+    .event .event-left .event-date .month{
+        display: inline-block;
+        font-size: 24px;
+    }
+
+    .event .event-left .event-date{
+        padding: 10px 0;
+    }
+  }

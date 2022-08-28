@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Countdown Timer</title>
+  <style>
+  </style>
+</head>
+
+<body>
+  <div class="countdown-timer">
+    <button onclick="Levels()"> Finished </button>
+    <p> Time Left: 
+        <span id="hours">0</span>
+        :
+        <span id="minutes"> 0</span>
+        :
+        <span id="seconds"> 0</span>
+    </p>
+
+  </div>
+  <script>
+    function Hours(){
+        window.hours =  window.hours-1;
+        document.getElementById("hours").innerHTML = window.hours;
+    }
+    function Minutes(){
+        if(window.minutes==1&&window.hours ==0){
+        }else if (window.minutes ==0){
+            window.minutes=60;
+            Hours();
+        }
+        window.minutes = window.minutes-1;
+        document.getElementById("minutes").innerHTML = window.minutes;
+    }
+    function Seconds(){
+
+        if(window.seconds==0&&window.minutes==0&&window.hours ==0){
+            clearInterval(window.Interval);
+            if(window.level ==window.spaces.length-1){
+              alert("Task Completed!");
+              return;
+            }else{
+              alert("Times up");
+              window.level = window.level+1;
+              Timer();
+            }
+        }else if(window.seconds==0){
+            window.seconds =60;
+            Minutes();
+        }
+        window.seconds = window.seconds-1;
+        document.getElementById("seconds").innerHTML = window.seconds;
+    }
+    function Timer(){
+        window.hours = spaces[level][0];
+        window.minutes = spaces[level][1];
+        window.seconds= spaces[level][2];
+        window.Interval = setInterval(Seconds,1000);
+        document.getElementById("seconds").innerHTML = window.seconds;
+        document.getElementById("minutes").innerHTML = window.minutes;
+        document.getElementById("hours").innerHTML = window.hours;
+    }
+
+    function Levels(){
+      window.level = 0;
+      window.spaces = [[0,0,10],[0,0,5],[0,0,7],[0,0,2]];
+      Timer();
+    }
+  </script>
+</body>
+
+</html>

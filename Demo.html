@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+
+    <head>
+
+
+        <meta charset="UTF-8">
+
+        <link rel="stylesheet" href="main.css">
+        
+        <title>Memo</title>
+
+        
+        <link rel="import" href="CountDown.html">
+
+    </head>
+    <body>
+        <div class="navigation">
+          <a href="dashboard.html">
+            <img src = "Home Icon.png"></img>
+            Home
+          </a>
+          <a href="#section1">
+            <img src = "Tasks Icon.png"></img>
+            Tasks
+          </a>
+          <a href="calendar.html">
+            <img src = "Calendar Icon.png"></img>
+            Calendar
+          </a>
+          <img id = "Logo" src="MemoLogo.png"></img>
+                
+
+                
+        </div>
+        
+        <div class="assignment_list"><!--Classes List-->
+
+          <div class="assignment1"><!--Math Class-->
+              <div class="subject">
+                  <h3>Math</h3>
+                  
+                  <div id="Math"></div>
+              </div>
+          </div><!--Math Class End-->
+  
+          <div class="assignment2"><!--English Class-->
+              <div class="subject">
+                  <h3>English</h3>
+                  
+                  <div id="English"></div>
+              </div>
+          </div><!--English Class End-->
+  
+          <div class="assignment3"><!--Chemistry Class-->
+              <div class="subject">
+                  <h3>Science</h3>
+                  
+                  <div id="Science"></div>
+              </div>
+          </div><!--Chemistry Class End-->
+  
+          <div class="assignment4"><!--History Class-->
+              <div class="subject">
+                  <h3>Social Studies</h3>
+                  
+                  <div id="Social Studies"></div>
+              </div>
+          </div><!--History Class End-->
+  
+          <div class="assignment5"><!--Language Class-->
+            <div class="subject">
+                <h3>Language</h3>
+                
+                <div id="Language"></div>
+            </div>
+        </div><!--Language Class End-->
+  
+        <div class="assignment6"><!--Other Class-->
+          <div class="subject">
+              <h3>Other</h3>
+              
+              <div id="Other"></div>
+          </div>
+      </div><!--Other Class End-->
+  
+      </div> <!--Classes List End-->
+        
+        <div class="tasks">
+            <div id="inputList" class="tasklist">
+                <h2>Task List</h2>
+                <input type="text" id="titleInput" placeholder="Task...">
+                <select id = "classes" name = "Classes">
+                  <option value = "Math"> Math </option>
+                  <option value = "English"> English </option>
+                  <option value = "Science"> Science </option>
+                  <option value = "Social Studies"> Social Studies </option>
+                  <option value = "Language"> Language </option>
+                  <option value = "Other"> Other </option>
+                </select>
+                <span onclick="newElement()" class="addBtn">
+                  <img src="Plus Button.png" width="30" height="30"></img>
+                </span>
+              </div>
+              
+            <div class="tasklist" id="taskstart">
+                <ul id="list">
+                    
+                </ul>
+        </div>
+       <template id="icon">
+        <div class="event-container">
+
+          <div class="event">
+            <div class="event-left">
+              <div class = "event-date">
+                <p id="demo"></p>
+              </div>
+            </div>
+            <div class="event-right">
+              <h3 class = "event-title">My Task</h3>
+    
+              <div class = "event-description" id="template">
+                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+              </div>
+              
+              <div class="event-timing">
+                <img src="Clock.png"> <span id="endtime">End Time:</span>
+              </div>
+          </div>
+    
+        </div>
+      </template>
+    
+        <script>
+           function Icon(){
+            elem = document.createElement('div');
+            elem.append(icon.content.cloneNode(true));
+            document.body.append(elem);
+          }
+            // Create a "close" button and append it to each list item
+            var myNodelist = document.getElementsByTagName("LI");
+            var i;
+            for (i = 0; i < myNodelist.length; i++) {
+              var span = document.createElement("SPAN");
+              var txt = document.createTextNode("\u00D7");
+              span.className = "close";
+              span.appendChild(txt);
+              myNodelist[i].appendChild(span);
+            }
+            
+            // Click on a close button to hide the current list item
+            var close = document.getElementsByClassName("close");
+            var i;
+            for (i = 0; i < close.length; i++) {
+              close[i].onclick = function() {
+                var div = this.parentElement;
+                div.style.display = "none";
+              }
+            }
+            
+            // Add a "checked" symbol when clicking on a list item
+            var list = document.querySelector('ul');
+            list.addEventListener('click', function(ev) {
+              if (ev.target.tagName === 'LI') {
+                ev.target.classList.toggle('checked');
+              }
+            }, false);
+            
+            // Create a new list item when clicking on the "Add" button
+            function newElement() {
+              var li = document.createElement("li");
+              var inputValue = document.getElementById("titleInput").value;
+              var select = document.getElementById('classes');
+              var text = select.options[select.selectedIndex].value;
+              li.id = inputValue;
+              var t = document.createTextNode(inputValue);
+              var minute = document.createElement("span");
+              var second = document.createElement("span");
+              var hour = document.createElement("span");
+              var left = document.createTextNode("  Time left:  ")
+              var colon = document.createTextNode(":");
+              var colon1 = document.createTextNode(":");
+              hour.id = "hours"+inputValue;
+              second.id = "seconds"+inputValue;
+              minute.id = "minutes"+inputValue;
+              li.appendChild(t);
+              li.appendChild(left);
+              li.appendChild(hour);
+              li.appendChild(colon);
+              li.appendChild(minute);
+              li.appendChild(colon1);
+              li.appendChild(second);
+              if (inputValue === '') {
+                alert("You must write something!");
+              } else {
+                document.getElementById("list").appendChild(li);
+                document.getElementById(text).innerHTML = inputValue;
+              }
+              Levels(inputValue);
+              document.getElementById("titleInput").value = "";
+              var span = document.createElement("SPAN");
+              var txt = document.createTextNode("\u00D7");
+              span.className = "close";
+              span.appendChild(txt);
+              li.appendChild(span);
+              for (i = 0; i < close.length; i++) {
+                close[i].onclick = function() {
+                  var div = this.parentElement;
+                  div.style.display = "none";
+                }
+              }
+              
+            }
+
+  
+    function Seconds(id,level,seconds,minutes,hours){
+      if (seconds.toString().length == 1) {
+        document.getElementById("seconds" +id).innerHTML = "0" + seconds;
+      } else {
+        document.getElementById("seconds" +id).innerHTML = seconds;
+      }
+      if (minutes.toString().length == 1) {
+        document.getElementById("minutes" +id).innerHTML = "0" + minutes;
+      } else {
+        document.getElementById("minutes" +id).innerHTML = minutes;
+      }
+      if (hours.toString().length == 1) {
+        document.getElementById("hours" +id).innerHTML = "0" + hours;
+      } else {
+        document.getElementById("hours" +id).innerHTML = hours;
+      }
+        if(seconds==0 && minutes==0 && hours ==0){
+            if(level ==window.spaces.length-1){
+              alert("Task Completed!");
+              return;
+            }else{
+              alert("Times up");
+              level = level+1;
+              hours = spaces[level][0];
+             minutes = spaces[level][1];
+              seconds= spaces[level][2];
+              let currentDate = new Date();
+        var minute = 0;
+        var hour = 0;
+        if((currentDate.getSeconds()+seconds)>60){
+          var second = (currentDate.getSeconds()+seconds)%60;
+          minute = minute+1;
+        }else{
+          second =(currentDate.getSeconds()+seconds);
+        }
+        if((currentDate.getMinutes()+minutes)>60){
+          minute = (currentDate.getMinutes()+minutes)%60;
+          hour = hour+1;
+        }else{
+          minute = currentDate.getMinutes()+minutes;
+        }
+        if(currentDate.getHours()+hours>24){
+            hour = (currentDate.getHours()+hours)%24
+        }else{
+          hour = (currentDate.getHours()+hours);
+        }
+        let time =  hour+ ":" + minute+":"+ second;
+        var last = document.querySelectorAll('#endtime');
+        last[last.length-1].innerHTML= time;
+              Seconds(id,level,seconds,minutes,hours);
+            }
+        }else{
+          if(seconds==0&&minutes==0){
+            minutes = 60;
+            seconds =60;
+        }else if(seconds==0){
+          minutes = minutes-1;
+          seconds=60;
+        }
+        seconds = seconds-1
+        setTimeout(Seconds,1000,id,level,seconds,minutes,hours);
+        } 
+    }
+    function Timer(id,level){
+        hours = spaces[level][0];
+        minutes = spaces[level][1];
+        seconds= spaces[level][2];
+        Seconds(id,level,seconds,minutes,hours);
+        Icon()
+        var list = document.querySelectorAll('#template');
+        list[list.length-1].innerHTML= id;
+        let currentDate = new Date();
+        var minute = 0;
+        var hour = 0;
+        if((currentDate.getSeconds()+seconds)>60){
+          var second = (currentDate.getSeconds()+seconds)%60;
+          minute = minute+1;
+        }else{
+          second =(currentDate.getSeconds()+seconds);
+        }
+        if((currentDate.getMinutes()+minutes)>60){
+          minute = (currentDate.getMinutes()+minutes)%60;
+          hour = hour+1;
+        }else{
+          minute = currentDate.getMinutes()+minutes;
+        }
+        if(currentDate.getHours()+hours>24){
+            hour = (currentDate.getHours()+hours)%24
+        }else{
+          hour = (currentDate.getHours()+hours);
+        }
+        let time =  hour+ ":" + minute+":"+ second;
+        var last = document.querySelectorAll('#endtime');
+        last[last.length-1].innerHTML= time;
+        var lest = document.querySelectorAll('#demo');
+        lest[lest.length-1].innerHTML=  currentDate.toDateString();
+    }
+
+    function Levels(id){
+      level = 0;
+      window.spaces = [[0,0,10],[0,0,10],[0,10,0],[0,10,0]];
+      Timer(id,level);
+    }
+        
+            </script>
+          
+ 
+
+
+    </body>
+
+
+</html>
